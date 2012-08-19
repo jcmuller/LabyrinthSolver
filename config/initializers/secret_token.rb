@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-LabyrinthSolver::Application.config.secret_token = '94542359a970de585e1b6d07287c3b6370e5bb78aa8f169eb14c5a586e902bedc9da6594dc61754f6eeabab3d545c13aaa610b1bb97bd0c0d99d2421c0d8dc90'
+LabyrinthSolver::Application.config.secret_token = 'a3e018c96dbd099600a3bf6d859c815baddd825da67e4a223f40ee6b08ed20d78253ac2ad539d927ffddc920794319d3f69d54b2f6f26b962cc1753cea17ee06'
