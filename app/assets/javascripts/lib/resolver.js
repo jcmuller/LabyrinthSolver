@@ -66,7 +66,11 @@ var Resolver = function(options) {
         }
 
         if (last != currentCell)
-          console.log("Didn't find it in ", solution.length);
+          console.log("Didn't find it in ", solution.length, a);
+        else {
+          console.log("Found it in", solution.length, a);
+          //simplifySolution();
+        }
       },
       random = function(upper_bound) {
         return Math.floor(Math.random() * upper_bound);
