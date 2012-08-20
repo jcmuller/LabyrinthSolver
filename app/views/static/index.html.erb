@@ -1,1 +1,21 @@
-hello, world
+<%= javascript "processing/processing" %>
+
+<h1>Labyrinth</h1>
+<input type="button" data-role="generate" value="Generate" />
+<input type="button" data-role="solve" value="Solve" />
+<div><canvas data-role="labyrinth"></canvas></div>
+
+<script type="text/javascript">
+  var labyrinth,
+      renderer,
+      resolver;
+</script>
+<%= content_for :dom_ready do %>
+  renderer = new RenderLabyrinth();
+  renderer.render();
+  labyrinth = renderer.labyrinth();
+  resolver = new Resolver({
+    labyrinth: labyrinth,
+    solution: renderer.solution()
+  });
+<% end %>
