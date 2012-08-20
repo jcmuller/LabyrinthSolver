@@ -48,7 +48,7 @@ var RenderLabyrinth = function(options) {
         processing = p;
 
         p.setup = function() {
-          p.size(600, 300);
+          p.size(600, 600);
         };
         // Override draw function, by default it will be called 60 times per second
         p.draw = function() {
