@@ -1,9 +1,12 @@
 <%= javascript "processing/processing" %>
 
 <h1>Labyrinth</h1>
-<input type="button" data-role="generate" value="Generate" />
-<input type="button" data-role="solve" value="Solve" />
-<div><canvas data-role="labyrinth"></canvas></div>
+<p>
+  <input type="button" data-role="generate" value="Generate" />
+  <input type="button" data-role="solve" value="Solve" />
+  <input type="button" data-role="toggle_ellipses" value="Toggle Ellipse Solutions" />
+</p>
+<p><canvas data-role="labyrinth"></canvas></p>
 
 <script type="text/javascript">
   var labyrinth,

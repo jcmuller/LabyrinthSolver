@@ -9,7 +9,9 @@ var RenderLabyrinth = function(options) {
       solution = [],
       cells = [],
       temp = [],
+      renderEllipses = false,
       $generateButton,
+      $toggleEllipseButton,
       generateLabyrinth = function() {
         solution.length = 0;
         labyrinth.resetCells();
@@ -20,6 +22,7 @@ var RenderLabyrinth = function(options) {
         options = options || {};
 
         $generateButton = options.generateButton || $("[data-role=generate]");
+        $toggleEllipseButton = options.toggleEllipseButton || $("[data-role=toggle_ellipses]");
         labyrinth = options.labyrinth || new Labyrinth(10, 10);
         $target = options.target || $('[data-role="labyrinth"]');
         $target.attr('id', 'renderLabyrinthId');
@@ -95,8 +98,18 @@ var RenderLabyrinth = function(options) {
             dy = (cell2.row() - cell1.row()) * cellHeight;
 
         processing.translate(cell1.col() * cellWidth, cell1.row() * cellHeight);
-        processing.ellipse((x1 + x2) / 2, (y1 + y2) / 2, cellWidth / 2, cellHeight / 2);
-        processing.ellipse(dx + (x1 + x2) / 2, dy + (y1 + y2) / 2, cellWidth / 2, cellHeight / 2);
+
+        if (renderEllipses) {
+          processing.strokeWeight(0);
+          processing.stroke(0);
+          processing.ellipse((x1 + x2) / 2, (y1 + y2) / 2, cellWidth / 2, cellHeight / 2);
+          if (solution[solution.length - 1] == cell2) {
+            processing.ellipse(dx + (x1 + x2) / 2, dy + (y1 + y2) / 2, cellWidth / 2, cellHeight / 2);
+          }
+        }
+
+        processing.strokeWeight(2);
+        processing.stroke(120, 120, 0);
         processing.line((x1 + x2) / 2, (y1 + y2) / 2, dx + (x1 + x2) / 2, dy + (y1 + y2) / 2);
         processing.stroke(0);
         processing.strokeWeight(0);
@@ -106,6 +119,9 @@ var RenderLabyrinth = function(options) {
   initialize(options);
 
   $generateButton.on("click", generateLabyrinth);
+  $toggleEllipseButton.on("click", function() {
+    renderEllipses = !renderEllipses;
+  });
 
   return {
     setLabyrinth: function(l) { labyrinth = l; },
