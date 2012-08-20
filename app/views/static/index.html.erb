@@ -14,9 +14,11 @@
       resolver;
 </script>
 <%= content_for :dom_ready do %>
-  renderer = new RenderLabyrinth();
+  labyrinth = new Labyrinth(50, 50);
+  renderer = new RenderLabyrinth({
+    labyrinth: labyrinth
+  });
   renderer.render();
-  labyrinth = renderer.labyrinth();
   resolver = new Resolver({
     labyrinth: labyrinth,
     solution: renderer.solution()
