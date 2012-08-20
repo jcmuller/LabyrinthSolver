@@ -34,10 +34,7 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 gem 'sqlite3'
-
 gem "twitter-bootstrap-rails"
-
-gem "raphael-rails"
 
 group :development, :test do
   gem 'pry'
