@@ -16,18 +16,15 @@ var Resolver = function(options) {
             neighbors = [],
             cellStack = [];
 
-        // Stack for current solution
-        // Stack for possibilities
-
-        // current branch
-        // branch can be 'committed'
-        // branch is destroyed when a wall is hit
-
+        // This is a new attempt.
         solution.length = 0;
+        // Start with the desired entry point
         solution.push(currentCell);
 
+        // Number of total iterations has to be bound...
+        // otherwise it can run forever :(
         var a = 0;
-        while (last != currentCell && a < 10000) {
+        while (last != currentCell && a < 100000) {
           a++;
           neighbors.length = 0;
 
@@ -44,26 +41,19 @@ var Resolver = function(options) {
             cellStack.push(currentCell);
             currentCell = neighbors[random(neighbors.length)];
           } else {
-            //console.log('popping', solution.length, cellStack.length);
             currentCell = cellStack.pop();
-            // cut solution to the neighbor of current currentCell
-            while (solution.length > 0 &&
-                !labyrinth.areNeighbors(currentCell, solution[solution.length - 1])) {
+
+            // SLOW! (But correct :( )
+            while (currentCell != solution[solution.length - 1])
               solution.pop();
-            }
           }
 
           if (solution.indexOf(currentCell) == -1)
             solution.push(currentCell);
-
-          if (last == currentCell) {
-            console.log("FOUND IT!", solution.length);
-          }
         }
 
-        if (last != currentCell) {
+        if (last != currentCell)
           console.log("Didn't find it in ", solution.length);
-        }
       },
       random = function(upper_bound) {
         return Math.floor(Math.random() * upper_bound);
