@@ -4,8 +4,8 @@ var RenderLabyrinth = function(options) {
       target,
       processing,
       canvas,
-      cellHeight = 20,
-      cellWidth = 20,
+      cellHeight = 5,
+      cellWidth = 5,
       solution = [],
       cells = [],
       temp = [],
@@ -58,6 +58,8 @@ var RenderLabyrinth = function(options) {
         for (var i = 0; i < cells.length; i++) {
           var cell = cells[i];
 
+          processing.stroke(0);
+          processing.strokeWeight(0);
           processing.pushMatrix();
           processing.translate(cell.col() * cellWidth, cell.row() * cellHeight);
           renderCell(cell);
@@ -96,6 +98,8 @@ var RenderLabyrinth = function(options) {
         processing.ellipse((x1 + x2) / 2, (y1 + y2) / 2, cellWidth / 2, cellHeight / 2);
         processing.ellipse(dx + (x1 + x2) / 2, dy + (y1 + y2) / 2, cellWidth / 2, cellHeight / 2);
         processing.line((x1 + x2) / 2, (y1 + y2) / 2, dx + (x1 + x2) / 2, dy + (y1 + y2) / 2);
+        processing.stroke(0);
+        processing.strokeWeight(0);
       }
   ;
 
