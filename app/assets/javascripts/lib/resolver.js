@@ -28,10 +28,16 @@ var Resolver = function(options) {
           a++;
           neighbors.length = 0;
 
+          // This is calculating neighbors per iteration,
+          // even if currentCell has already been looked at
+          // .... how about storing the neighbors? No... that could grow pretty
+          // quickly
           for (var directionString in Cell.DIRECTIONS) {
             var direction = parseInt(directionString, 10);
+            // Get neighbors that are plausible
             if (currentCell.isWallSet(direction)) {
               n = labyrinth.neighbor(currentCell, direction);
+              // And that aren't part of the solution yet
               if (solution.indexOf(n) == -1)
                 neighbors.push(n);
             }
@@ -43,9 +49,16 @@ var Resolver = function(options) {
           } else {
             currentCell = cellStack.pop();
 
-            // SLOW! (But correct :( )
-            while (currentCell != solution[solution.length - 1])
-              solution.pop();
+            // TODO
+            // Need to store pairs, so that I know who's neighbor is being
+            // popped from the cellStack and remove up to that element (the
+            // neighbor of the cell out of the stack
+            /*
+            if (solution.indexOf(currentCell) > -1) {
+              //a -= solution.length - solution.indexOf(currentCell);
+              solution.length = solution.indexOf(currentCell) + 1;
+            }
+            */
           }
 
           if (solution.indexOf(currentCell) == -1)
