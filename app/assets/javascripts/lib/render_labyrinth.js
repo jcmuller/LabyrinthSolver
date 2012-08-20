@@ -53,8 +53,8 @@ var RenderLabyrinth = function(options) {
         // Override draw function, by default it will be called 60 times per second
         p.draw = function() {
           p.background(255);
-          renderCells();
           renderSolution();
+          renderCells();
         };
       },
       renderCells = function() {
