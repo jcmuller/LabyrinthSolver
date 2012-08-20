@@ -74,6 +74,22 @@ var Resolver = function(options) {
       },
       random = function(upper_bound) {
         return Math.floor(Math.random() * upper_bound);
+      },
+      simplifySolution = function() {
+        var temp = [solution[0]];
+        for (var i = 1; i < solution.length; i++) {
+          var cell = solution[i];
+          console.log(temp[temp.length - 1].toString(), cell.toString());
+          if (labyrinth.areNeighbors(temp[temp.length - 1], cell)) {
+            console.log('Neighbors');
+            temp.push(cell);
+          } else
+            console.log('Not');
+        }
+
+        solution.length = temp.length;
+        for (var j = 0; j < temp.length; j++)
+          solution[j] = temp[j];
       }
   ;
 
