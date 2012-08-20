@@ -61,8 +61,8 @@ var RenderLabyrinth = function(options) {
         for (var i = 0; i < cells.length; i++) {
           var cell = cells[i];
 
-          processing.stroke(0);
           processing.strokeWeight(0);
+          processing.stroke(0);
           processing.pushMatrix();
           processing.translate(cell.col() * cellWidth, cell.row() * cellHeight);
           renderCell(cell);
@@ -108,8 +108,8 @@ var RenderLabyrinth = function(options) {
           }
         }
 
-        processing.strokeWeight(2);
-        processing.stroke(120, 120, 0);
+        //processing.strokeWeight(cellWidth);
+        //processing.stroke(120, 120, 0);
         processing.line((x1 + x2) / 2, (y1 + y2) / 2, dx + (x1 + x2) / 2, dy + (y1 + y2) / 2);
         processing.stroke(0);
         processing.strokeWeight(0);
