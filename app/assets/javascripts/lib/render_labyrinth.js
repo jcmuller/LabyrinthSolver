@@ -2,7 +2,6 @@ var RenderLabyrinth = function(options) {
   var labyrinth,
       $target,
       target,
-      processing,
       canvas,
       cellHeight = 8,
       cellWidth = 8,
@@ -44,20 +43,24 @@ var RenderLabyrinth = function(options) {
           }
         }
       },
-      sketch = function(p) {
-        processing = p;
 
-        p.setup = function() {
-          p.size(cellWidth * labyrinth.rows()[0].length, cellHeight * labyrinth.rows().length);
+      sketch = function(processing) {
+        processing.setup = function() {
+          var rows = labyrinth.rows(),
+              width = cellWidth * rows[0].length,
+              height = cellHeight * rows.length;
+
+          processing.size(width, height);
         };
         // Override draw function, by default it will be called 60 times per second
-        p.draw = function() {
-          p.background(255);
-          renderSolution();
-          renderCells();
+        processing.draw = function() {
+          processing.background(255);
+          renderSolution(processing);
+          renderCells(processing);
         };
       },
-      renderCells = function() {
+
+      renderCells = function(processing) {
         for (var i = 0; i < cells.length; i++) {
           var cell = cells[i];
 
@@ -65,11 +68,12 @@ var RenderLabyrinth = function(options) {
           processing.stroke(0);
           processing.pushMatrix();
           processing.translate(cell.col() * cellWidth, cell.row() * cellHeight);
-          renderCell(cell);
+          renderCell(processing, cell);
           processing.popMatrix();
         }
       },
-      renderCell = function(cell) {
+
+      renderCell = function(processing, cell) {
         var x1 = 0,
           x2 = cellWidth,
           y1 = 0,
@@ -80,18 +84,20 @@ var RenderLabyrinth = function(options) {
         if (!cell.isWallSet(Cell.WEST))  processing.line(x1, y1, x1, y2);
         if (!cell.isWallSet(Cell.EAST))  processing.line(x2, y1, x2, y2);
       },
-      renderSolution = function() {
+
+      renderSolution = function(processing) {
         for (var i = 0; i < solution.length - 1; i++) {
           var cell1 = solution[i];
           var cell2 = solution[i + 1];
 
           processing.pushMatrix();
           processing.fill(i / 4, 255 - i / 4, i);
-          renderSolutionCells(cell1, cell2);
+          renderSolutionCells(processing, cell1, cell2);
           processing.popMatrix();
         }
       },
-      renderSolutionCells = function(cell1, cell2) {
+
+      renderSolutionCells = function(processing, cell1, cell2) {
         var x1 = 0, x2 = cellWidth, y1 = 0, y2 = cellHeight;
 
         var dx = (cell2.col() - cell1.col()) * cellWidth,
