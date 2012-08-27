@@ -11,12 +11,14 @@ var RenderLabyrinth = function(options) {
       renderEllipses = false,
       $generateButton,
       $toggleEllipseButton,
+
       generateLabyrinth = function() {
         solution.length = 0;
         labyrinth.resetCells();
         labyrinth.initializeMaze();
         extractCells();
       },
+
       initialize = function(options) {
         options = options || {};
 
@@ -28,9 +30,11 @@ var RenderLabyrinth = function(options) {
         target = document.getElementById($target.attr('id'));
         extractCells();
       },
+
       render = function() {
         new Processing(target, sketch);
       },
+
       extractCells = function() {
         var rows = labyrinth.rows();
 
@@ -52,6 +56,7 @@ var RenderLabyrinth = function(options) {
 
           processing.size(width, height);
         };
+
         // Override draw function, by default it will be called 60 times per second
         processing.draw = function() {
           processing.background(255);
