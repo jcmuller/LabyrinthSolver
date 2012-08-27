@@ -98,6 +98,9 @@ var Labyrinth = function() {
         }
       },
       areNeighbors = function(cell1, cell2) {
+        if (cell1 === null || cell2 === null)
+          return false;
+
         if (
             (Math.abs(cell1.row() - cell2.row()) == 1 &&
              Math.abs(cell1.col() - cell2.col()) === 0) ||
