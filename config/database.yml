@@ -1,7 +1,0 @@
-development: &default
-  adapter: sqlite3
-  database: tmp/db.sqlite
-
-test:
-  <<: *default
-  database: tmp/test.sqlite

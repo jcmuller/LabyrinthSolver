@@ -1,0 +1,42 @@
+---
+title: Labyrinth!
+---
+
+.row
+  .large-12.columns
+    %h1 Labyrinth
+
+.row
+  .large-9.columns
+    .text-center
+      %canvas{ data: { role: "labyrinth" } }
+
+  .large-3.medium-4.columns
+    .hide-for-small
+      .sidebar
+        %nav
+          %ul.stack.button-group
+            %li
+              %a.small.radius.button{ data: { role: "generate" } }
+                Generate
+
+            %li
+              %a.small.radius.button{ data: { role: "toggle_ellipses" } }
+                Toggle Ellipses
+
+            %li
+              %a.small.radius.button{ data: { role: "solve" } }
+                Solve
+
+- content_for :javascripts do
+  :javascript
+    var l = new Labyrinth(40, 24),
+        r = new RenderLabyrinth({
+          labyrinth: l
+        }),
+        s = new Resolver({
+          labyrinth: l,
+          solution: r.solution()
+        });
+
+    r.render();

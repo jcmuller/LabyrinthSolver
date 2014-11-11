@@ -1,0 +1,38 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title><%= data.page.title || "The Middleman" %></title>
+
+    <%= stylesheet_link_tag "app", "style" %>
+    <%= javascript_include_tag "modernizr" %>
+  </head>
+
+  <body class="<%= page_classes %>">
+    <nav class="top-bar" data="topbar" role="navigation">
+      <ul class="title-area">
+        <li class="name">
+          <h1>
+            <a href="/">Labyrinth</a>
+          </h1>
+        </li>
+      </ul>
+    </nav>
+
+    <%= yield %>
+
+    <%= javascript_include_tag  "all" %>
+    <% if content_for?(:javascripts) %>
+      <%= yield_content :javascripts %>
+    <% end %>
+    <% if content_for?(:dom_ready) %>
+      <script>
+        $(function() {
+          <%= yield_content :dom_ready %>
+        });
+      </script>
+    <% end %>
+  </body>
+</html>
