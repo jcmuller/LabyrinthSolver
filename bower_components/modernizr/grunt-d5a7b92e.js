@@ -16,8 +16,8 @@ module.exports = function( grunt ) {
         },
         lint: {
             files: [
-                'grunt.js',
-                'modernizr.js',
+                'grunt-d5a7b92e.js',
+                'modernizr-7d1cea05.js',
                 'feature-detects/*.js'
             ]
         },
@@ -25,7 +25,7 @@ module.exports = function( grunt ) {
             dist: {
                 src: [
                     '<banner:meta.banner>',
-                    'modernizr.js'
+                    'modernizr-7d1cea05.js'
                 ],
                 dest: 'modernizr.min.js'
             }
