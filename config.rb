@@ -5,7 +5,7 @@
 compass_config do |config|
   # Require any additional compass plugins here.
   config.add_import_path "bower_components/foundation/scss"
-  
+
   # Set this to the root of your project when deployed:
   config.http_path = "/"
   config.css_dir = "stylesheets"
@@ -21,7 +21,6 @@ compass_config do |config|
 
   # To disable debugging comments that display the original location of your selectors. Uncomment:
   # line_comments = false
-
 
   # If you prefer the indented syntax, you might want to regenerate this
   # project again passing --syntax sass, or you can uncomment this:
@@ -95,10 +94,10 @@ configure :build do
   # activate :minify_javascript
 
   # Enable cache buster
-  # activate :asset_hash
+  activate :asset_hash
 
   # Use relative URLs
-  # activate :relative_assets
+  activate :relative_assets
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
