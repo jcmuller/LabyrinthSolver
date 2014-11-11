@@ -1,0 +1,78 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Labyrinth!</title>
+
+    <link href="/stylesheets/app.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/style.css" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/modernizr.js" type="text/javascript"></script>
+  </head>
+
+  <body class="index">
+    <nav class="top-bar" data="topbar" role="navigation">
+      <ul class="title-area">
+        <li class="name">
+          <h1>
+            <a href="/">Labyrinth</a>
+          </h1>
+        </li>
+      </ul>
+    </nav>
+
+    <div class='row'>
+  <div class='large-12 columns'>
+    <h1>Labyrinth</h1>
+  </div>
+</div>
+<div class='row'>
+  <div class='large-9 columns'>
+    <div class='text-center'>
+      <canvas data-role='labyrinth'></canvas>
+    </div>
+  </div>
+  <div class='large-3 medium-4 columns'>
+    <div class='hide-for-small'>
+      <div class='sidebar'>
+        <nav>
+          <ul class='stack button-group'>
+            <li>
+              <a class='small radius button' data-role='generate'>
+                Generate
+              </a>
+            </li>
+            <li>
+              <a class='small radius button' data-role='toggle_ellipses'>
+                Toggle Ellipses
+              </a>
+            </li>
+            <li>
+              <a class='small radius button' data-role='solve'>
+                Solve
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+      <script>
+  var l = new Labyrinth(40, 24),
+      r = new RenderLabyrinth({
+        labyrinth: l
+      }),
+      s = new Resolver({
+        labyrinth: l,
+        solution: r.solution()
+      });
+  
+  r.render();
+</script>
+
+  </body>
+</html>
