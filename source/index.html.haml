@@ -8,8 +8,7 @@ title: Labyrinth!
 
 .row
   .large-9.columns
-    .text-center
-      %canvas{ data: { role: "labyrinth" } }
+    %div{ data: { role: "renderer" } }
 
   .large-3.medium-4.columns
     .hide-for-small
@@ -28,15 +27,6 @@ title: Labyrinth!
               %a.small.radius.button{ data: { role: "toggle_ellipses" } }
                 Toggle Ellipses
 
-- content_for :javascripts do
-  :javascript
-    var l = new Labyrinth(40, 24),
-        r = new RenderLabyrinth({
-          labyrinth: l
-        }),
-        s = new Resolver({
-          labyrinth: l,
-          solution: r.solution()
-        });
+    %h1 &nbsp;
 
-    r.render();
+    %canvas{ data: { role: "labyrinth" } }
